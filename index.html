@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html lang="en-US">
- 
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Today's Date</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <style>
+        .square {
+            height: 100px;
+            width: 100px;
+            border: 4px solid;
+            background-color: orange;
+        }
+    </style>
+    <title>Blueprint Creator</title>
 </head>
- 
+
 <body>
-  
-  <script>
-      let d = new Date();
-      document.body.innerHTML = "<h1>Today's date is " + d + "</h1>"
-  </script>
- 
+
+    <div id="blueprint"></div>
+    <div class="square"
+         id="square"></div>
+    <div class="edit-borders"
+         id="edit-borders">
+        <p>Top Wall:</p>
+          <input type="radio"
+               id="wall"
+               name="top-border"
+               value=0>
+          <label for="wall">Wall</label><br>
+          <input type="radio"
+               id="open"
+               name="top-border"
+               value=1>
+          <label for="open">Open</label><br>
+          <input type="radio"
+               id="door"
+               name="top-border"
+               value=2>
+          <label for="door">Door</label>
+    </div>
+
+    <script type="text/javascript"
+            src="./blueprint.js"></script>
+
 </body>
- 
+
 </html>

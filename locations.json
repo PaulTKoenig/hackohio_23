@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "id": 0,
+            "name": "tony's pants shop",
+            "description": "we sell men's pants very cheap"
+        },
+        {
+            "id": 1,
+            "name": "shoes r us",
+            "description": "women's designer shoes built and worn in the usa"
+        },
+        {
+            "id": 2,
+            "name": "restroom",
+            "description": "men's and women's bathroom"
+        }
+    ]
+}
