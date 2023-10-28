@@ -25,8 +25,6 @@ data = [0,0,0]
 def get_values():
     global data
     global data_queue_receive
-    # data_queue_get.put('i')
-    # print(data_queue_receive.empty())
 
     if not data_queue_receive.empty():
         while not data_queue_receive.empty():
@@ -40,10 +38,10 @@ def get_values():
         y_pos = data[1]
         angle = data[2]
 
-    return str(angle)
+    # return str(angle)
 
-    output_dict = {'x_position': x_pos_list[-1],
-                   'y_position': y_pos_list[-1],
+    output_dict = {'x_position': x_pos,
+                   'y_position': y_pos,
                    'current_angle': angle}
     
     return jsonify(output_dict)
