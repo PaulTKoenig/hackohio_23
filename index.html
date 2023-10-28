@@ -3,15 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         .arrow-position {
             position: absolute;
+            top: 50%
         }
 
         .arrow {
@@ -55,6 +53,9 @@
         .main {
             display: inline;
         }
+        .cred {
+            display: none;
+        }
     </style>
     <title>Blueprint Creator</title>
 </head>
@@ -66,30 +67,32 @@
         <div id="blueprint" class="col-md-6"></div>
 
         <div class="search col-md-6">
-            <input type="text"
-                   id="search-bar"
-                   placeholder="Search..">
-            <button type="button"
-                    class="btn btn-primary"
-                    onclick="search()">Search</button>
-            <button type="button"
-                    class="btn btn-primary"
-                    onclick="startRoute()">startRoute</button>
+            <input type="text" id="search-bar" placeholder="Search..">
+            <button type="button" class="btn btn-primary" onclick="search()">Search</button>
+            <button type="button" class="btn btn-primary" onclick="startRoute()">startRoute</button>
 
             <div id="blueprint"></div>
-            <div class="square"
-                 id="square"></div>
-            <div class="edit-borders"
-                 id="edit-borders">
+            <div class="square" id="square"></div>
+            <div class="edit-borders" id="edit-borders">
             </div>
 
-            <p class="arrow-position"
-               id="arrow-position"><i class="arrow"
-                   id="arrow"></i></p>
-        </div>
-    </div>
-    <script type="text/javascript"
-            src="./blueprint.js"></script>
+            <p class="arrow-position" id="arrow-position"><i class="arrow" id="arrow"></i></p>
+
+            <div>
+                <label for="disabilityRouteCheckbox">Disability Accommodating Route</label>
+                <input type="checkbox" id="disabilityRouteCheckbox" name="disabilityRoute" value="yes">
+            </div>
+            <div>
+                <label for="pointofinterest">Add a Point of Interest to Update Map</label>
+                <input type="text" id="Add a Point of Interest" placeholder="Restroom, kiosk, etc.">
+
+            </div>
+
+            <div class="cred" id = "cred">
+                <label for="credpoints">Thank you for updating the map! You have earned 10 credibility points.</label>
+            </div>
+
+            <script type="text/javascript" src="./blueprint.js"></script>
 
 </body>
 

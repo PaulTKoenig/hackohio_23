@@ -276,8 +276,10 @@ function startRoute() {
     addHorizontalRoute(6, 8);
 
     let arrow_position = document.getElementById('arrow-position');
+    let cred = document.getElementById('cred');
     let arrow = document.getElementById('arrow');
     arrow.style.transform = "rotate(-45deg)";
+    cred.style.display = "block";
     arrow_position.style.left = "50%";
     arrow_position.style.top = "50%";
 }
