@@ -5,6 +5,7 @@ import struct
 import threading
 from queue import Queue
 from flask_cors import CORS
+import math
 
 data_queue_receive = Queue()
 x_pos_list = [0]
@@ -37,6 +38,11 @@ def get_values():
         angle = data[2]
 
     # return str(angle)
+    if angle > 2*math.pi:
+        angle -= 2*math.pi
+
+    if angle < 2*math.pi:
+        angle += 2*math.pi
 
     output_dict = {'x_position': x_pos,
                    'y_position': y_pos,

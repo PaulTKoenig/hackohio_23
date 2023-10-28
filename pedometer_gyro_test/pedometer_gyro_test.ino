@@ -60,6 +60,8 @@ void loop() {
 
   if (digitalRead(A3) == 1) {
     true_angle = 0;
+    x_pos = 0;
+    y_pos = 0;
   }
 
   sensors_event_t event_gyro;
@@ -69,19 +71,11 @@ void loop() {
   // integrate gyro to get angle
   true_angle += (double(millis() - last_time) / 1000.0) * gyro_val;
   last_time = millis();
-
-  //  Serial.print("steps: "); Serial.print(steps);
-  //  Serial.print("  angle: "); Serial.print(true_angle);
-  //  Serial.print("  x pos: "); Serial.print(x_pos);
-  //  Serial.print("  y pos: "); Serial.println(y_pos);
 }
 
 bool get_steps() {
   sensors_event_t event_accel;
   accel.getEvent(&event_accel);
-
-  //  float xaccl = event_accel.acceleration.x;
-  //  float yaccl = event_accel.acceleration.y;
   float zaccl = event_accel.acceleration.z;
 
   if (abs(zaccl) > threshold && flag == 0) {

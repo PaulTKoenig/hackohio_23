@@ -269,19 +269,103 @@ function addRightRoute(i, j) {
     cell_div.style.borderTop = "4px solid red";
 }
 
-function startRoute() {
+function addLeftRoute(i, j) {
+    let cell_div = document.getElementById(`cell_div_${i}_${j}`);
+
+    cell_div.style.position = "absolute";
+    cell_div.style.height = "17px";
+    cell_div.style.left = (j * 30 ) + "px";
+    cell_div.style.borderBottom = "4px solid red";
+
+    cell_div.style.position = "absolute";
+    cell_div.style.width = "17px";
+    cell_div.style.top = (i * 30 ) + "px";
+    cell_div.style.borderRight = "4px solid red";
+}
+
+async function startRoute() {
     addVerticalRoute(7, 8);
     addVerticalRoute(7, 7);
     addRightRoute(6, 7);
     addHorizontalRoute(6, 8);
+    addHorizontalRoute(6, 9);
+    addLeftRoute(6,10);
+    addVerticalRoute(10,3);
+    addVerticalRoute(10,4);
+    addVerticalRoute(10,5);
+    addLeftRoute(9,7);
+    addRightRoute(2, 10);
+    //addVerticalRoute(7,9);
 
     let arrow_position = document.getElementById('arrow-position');
     let cred = document.getElementById('cred');
     let arrow = document.getElementById('arrow');
     arrow.style.transform = "rotate(-45deg)";
     cred.style.display = "block";
-    arrow_position.style.left = "50%";
-    arrow_position.style.top = "50%";
+    arrow_position.style.left = "210px";
+    arrow_position.style.top = "270px";
+
+    let search_results;
+    let last_angle = 0;
+    let angle = 0;
+
+    
+    let headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Content-Type', 'application/json')
+        
+    setInterval(async function() {
+        await fetch('http://127.0.0.1:5000/get_values', {
+            method: 'GET',
+            headers: headers
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            let angle = data['current_angle'];
+            angle = -Math.floor(angle * 180 / Math.PI);
+            
+            let x_pos = data['x_position'];
+            let y_pos = data['y_position'];
+            
+            arrow.style.transform = `rotate(${angle - 135}deg)`;
+
+            arrow_position.style.top = (-y_pos + 270) + "px";
+            arrow_position.style.left = (x_pos + 210) + "px";
+
+            /*
+            let angle = data['current_angle'];
+            angle = Math.floor(angle * 180 / Math.PI);
+
+
+            if (angle != last_angle) {
+                console.log(`rotate(${last_angle-angle}deg)`);
+                arrow.style.transform = `rotate(${last_angle-angle}deg)`;
+                console.log(arrow.style.transform)
+                last_angle = angle;
+            }
+            */
+
+        });
+    }, 250);
+        
+
+        // await fetch('http://127.0.0.1:5000/get_values', {
+        //         method: 'GET',
+        //         headers: headers
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         let angle = data['current_angle'];
+        //         angle = Math.floor(angle * 180 / Math.PI);
+        //         if (angle != last_angle) {
+        //             arrow.style.transform = `rotate(-${angle - last_angle}deg)`;
+        //             last_angle = angle;
+        //         }
+        
+        //         console.log(angle);
+        //     });
+    
 }
 
 
