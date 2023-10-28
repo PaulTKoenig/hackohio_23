@@ -51,33 +51,43 @@
         .search {
             margin-top: 20px;
         }
+
+        .main {
+            display: inline;
+        }
     </style>
     <title>Blueprint Creator</title>
 </head>
 
 <body>
 
-    <div class="search">
-        <input type="text"
-               id="search-bar"
-               placeholder="Search..">
-        <button type="button"
-                class="btn btn-primary"
-                onclick="search()">Search</button>
-        <button type="button"
-                class="btn btn-primary"
-                onclick="startRoute()">startRoute</button>
+    <div class="row">
+
+        <div id="blueprint" class="col-md-6"></div>
+
+        <div class="search col-md-6">
+            <input type="text"
+                   id="search-bar"
+                   placeholder="Search..">
+            <button type="button"
+                    class="btn btn-primary"
+                    onclick="search()">Search</button>
+            <button type="button"
+                    class="btn btn-primary"
+                    onclick="startRoute()">startRoute</button>
+
+            <div id="blueprint"></div>
+            <div class="square"
+                 id="square"></div>
+            <div class="edit-borders"
+                 id="edit-borders">
+            </div>
+
+            <p class="arrow-position"
+               id="arrow-position"><i class="arrow"
+                   id="arrow"></i></p>
+        </div>
     </div>
-
-    <div id="blueprint"></div>
-    <div class="square"
-         id="square"></div>
-    <div class="edit-borders"
-         id="edit-borders">
-    </div>
-
-    <p class="arrow-position" id="arrow-position"><i class="arrow" id="arrow"></i></p>
-
     <script type="text/javascript"
             src="./blueprint.js"></script>
 

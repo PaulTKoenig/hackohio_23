@@ -27,8 +27,8 @@ class Blueprint {
         var blueprint = document.createElement("TABLE");
         blueprint.setAttribute("id", "blueprint");
         blueprint.style.borderCollapse = "collapse";
-        document.body.appendChild(blueprint);
-        document.body.insertBefore(blueprint, document.body.firstChild);
+        var table = document.getElementById("blueprint");
+        table.appendChild(blueprint);
 
         for (let i = 0; i < this.blueprint.length; i++) {
             var row = document.createElement("TR");
