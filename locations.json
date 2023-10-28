@@ -14,6 +14,51 @@
             "id": 2,
             "name": "restroom",
             "description": "men's and women's bathroom"
+        },
+        {
+            "id": 3,
+            "name": "gift shop",
+            "description": "all your needs and weeds"
+        },
+        {
+            "id": 4,
+            "name": "cakes",
+            "description": "birthday cakes"
+        },
+        {
+            "id": 5,
+            "name": "chic fil a",
+            "description": "bbq chicken"
+        },
+        {
+            "id": 6,
+            "name": "panda express",
+            "description": "yummy chinese food"
+        },
+        {
+            "id": 7,
+            "name": "chipotle",
+            "description": "bowl with a burrito on the side, chicken, white rice, no beans, corn salsa, cheese, and lettuce"
+        },
+        {
+            "id": 8,
+            "name": "raising canes",
+            "description": "caniac combo with extra toast instead of cole slaw good chicken"
+        },
+        {
+            "id": 9,
+            "name": "mcdonalds",
+            "description": "4 mcchickens with extra syrup"
+        },
+        {
+            "id": 10,
+            "name": "chick fil a",
+            "description": "8 piece chicken nugget with bbq sauce, lemonade no ice"
+        },
+        {
+            "id": 11,
+            "name": "blaze pizza",
+            "description": "hot and ready pizza"
         }
     ]
 }

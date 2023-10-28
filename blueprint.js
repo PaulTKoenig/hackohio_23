@@ -37,11 +37,11 @@ class Blueprint {
 
                 var cell = document.createElement("TD");
                 cell.setAttribute("id", `cell_${i}_${j}`);
-                cell.style.height = "25px";
-                cell.style.width = "25px";
+                cell.style.height = "30px";
+                cell.style.width = "30px";
                 cell.style.border = "1px solid";
                 cell.style.borderColor = "black";
-                cell.setAttribute('onclick', 
+                cell.setAttribute('onclick',
                     `if (event.metaKey) { 
                         blueprint.enableRightBorder(${i},${j})
                     } else if (event.ctrlKey) {
@@ -53,6 +53,11 @@ class Blueprint {
                     } else { 
                         blueprint.enableCell(${i},${j}) 
                     };`);
+
+                var div = document.createElement("div");
+                div.setAttribute("id", `cell_div_${i}_${j}`);
+                cell.appendChild(div);
+
                 row.appendChild(cell);
             }
             blueprint.appendChild(row);
@@ -206,9 +211,75 @@ class Blueprint {
         for (var border_location = 0; border_location < border_locations.length; border_location++) {
             this.displayBorderMenu(edit_borders_div, border_locations[border_location], i, j);
         }
-
-        console.log(this.blueprint[i][j]);
     }
+}
+
+
+async function search() {
+
+    let search_results;
+
+    let headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Content-Type', 'application/json')
+    await fetch('http://127.0.0.1:5000/search',
+        {
+            method: 'GET',
+            headers: headers
+        })
+        .then(response => response.json())
+        .then(data => search_results = data);
+
+    for (i = 0; i < search_results.length; i++) {
+        var label = document.createElement("label");
+        label.innerHTML = document.getElementById('search-bar').value;
+        document.body.appendChild(label);
+    }
+}
+
+function addVerticalRoute(i, j) {
+    let cell_div = document.getElementById(`cell_div_${i}_${j}`);
+    cell_div.style.position = "absolute";
+    cell_div.style.height = "30px";
+    cell_div.style.left = (i * 30 + 13) + "px";
+    cell_div.style.top = (j * 30) + "px";
+    cell_div.style.borderRight = "4px solid red";
+}
+
+function addHorizontalRoute(i, j) {
+    let cell_div = document.getElementById(`cell_div_${i}_${j}`);
+    cell_div.style.position = "absolute";
+    cell_div.style.width = "30px";
+    cell_div.style.left = (j * 30) + "px";
+    cell_div.style.top = (i * 30 + 13) + "px";
+    cell_div.style.borderTop = "4px solid red";
+}
+
+function addRightRoute(i, j) {
+    let cell_div = document.getElementById(`cell_div_${i}_${j}`);
+
+    cell_div.style.position = "absolute";
+    cell_div.style.height = "20px";
+    cell_div.style.left = (j * 30 + 13) + "px";
+    cell_div.style.borderLeft = "4px solid red";
+
+    cell_div.style.position = "absolute";
+    cell_div.style.width = "20px";
+    cell_div.style.top = (i * 30 + 13) + "px";
+    cell_div.style.borderTop = "4px solid red";
+}
+
+function startRoute() {
+    addVerticalRoute(7, 8);
+    addVerticalRoute(7, 7);
+    addRightRoute(6, 7);
+    addHorizontalRoute(6, 8);
+
+    let arrow_position = document.getElementById('arrow-position');
+    let arrow = document.getElementById('arrow');
+    arrow.style.transform = "rotate(-45deg)";
+    arrow_position.style.left = "50%";
+    arrow_position.style.top = "50%";
 }
 
 

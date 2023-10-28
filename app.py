@@ -2,22 +2,22 @@ from flask import Flask, jsonify
 import serial
 import time
 import struct
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-from math import cos, sin
 import threading
 from queue import Queue
-
-# data_queue_get = track_route.data_queue_get
-# data_queue_receive = track_route.data_queue_receive
+from flask_cors import CORS
 
 data_queue_receive = Queue()
 x_pos_list = [0]
 y_pos_list = [0]
 
 app = Flask(__name__)
+CORS(app)
 
 data = [0,0,0]
+
+@app.route('/search', methods=['GET'])
+def search():
+    return jsonify([{"HELLO": "HI"}])
 
 @app.route('/get_values', methods=['GET'])
 def get_values():
