@@ -5,12 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
     <style>
         .square {
+            display: none;
             height: 100px;
             width: 100px;
             border: 4px solid;
             background-color: orange;
+        }
+
+        #Top-Border,
+        #Right-Border,
+        #Bottom-Border,
+        #Left-Border {
+            margin: 10px;
+        }
+
+        /* Style the search box */
+        #search-bar {
+            width: 25%;
+            font-size: 18px;
+            padding: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .search {
+            margin-top: 20px;
         }
     </style>
     <title>Blueprint Creator</title>
@@ -18,27 +42,19 @@
 
 <body>
 
+    <div class="search">
+        <input type="text"
+               id="search-bar"
+               placeholder="Search..">
+        <button type="button"
+                class="btn btn-primary">Search</button>
+    </div>
+
     <div id="blueprint"></div>
     <div class="square"
          id="square"></div>
     <div class="edit-borders"
          id="edit-borders">
-        <p>Top Wall:</p>
-          <input type="radio"
-               id="wall"
-               name="top-border"
-               value=0>
-          <label for="wall">Wall</label><br>
-          <input type="radio"
-               id="open"
-               name="top-border"
-               value=1>
-          <label for="open">Open</label><br>
-          <input type="radio"
-               id="door"
-               name="top-border"
-               value=2>
-          <label for="door">Door</label>
     </div>
 
     <script type="text/javascript"

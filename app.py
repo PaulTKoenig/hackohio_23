@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 # ROUTES
 
-@app.route("/test")
-def test():
+@app.route("/test", methods=['GET'])
+def test_vals():
     return "test"
 
 
