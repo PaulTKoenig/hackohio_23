@@ -9,18 +9,18 @@
     <style>
         .arrow-position {
             position: absolute;
-            top: 50%
         }
 
         .arrow {
-            border: solid black;
+            z-index: 2;
+            border: solid green;
             border-width: 0 5px 5px 0;
             display: inline-block;
             padding: 3px;
         }
 
         body {
-            background-color: white;
+            background-color: black;
         }
 
         .square {
@@ -43,7 +43,7 @@
             width: 25%;
             font-size: 18px;
             padding: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid #ffffff;
         }
 
         .search {
@@ -55,6 +55,7 @@
         }
         .cred {
             display: none;
+            
         }
     </style>
     <title>Blueprint Creator</title>
@@ -64,32 +65,34 @@
 
     <div class="row">
 
-        <div id="blueprint" class="col-md-6"></div>
+        <div id="blueprint" class="col-md-6">
+            <p class="arrow-position" id="arrow-position"><i class="arrow" id="arrow"></i></p>
+        </div>
 
         <div class="search col-md-6">
             <input type="text" id="search-bar" placeholder="Search..">
             <button type="button" class="btn btn-primary" onclick="search()">Search</button>
             <button type="button" class="btn btn-primary" onclick="startRoute()">startRoute</button>
+            <button type="button" class="btn btn-primary" onclick="saveRoute()">saveRoute</button>
+            <button type="button" class="btn btn-primary" onclick="getRoute()">getRoute</button>
 
             <div id="blueprint"></div>
             <div class="square" id="square"></div>
             <div class="edit-borders" id="edit-borders">
             </div>
 
-            <p class="arrow-position" id="arrow-position"><i class="arrow" id="arrow"></i></p>
-
             <div>
-                <label for="disabilityRouteCheckbox">Disability Accommodating Route</label>
+                <label for="disabilityRouteCheckbox" style="color: white">Disability Accommodating Route</label>
                 <input type="checkbox" id="disabilityRouteCheckbox" name="disabilityRoute" value="yes">
             </div>
-            <div>
-                <label for="pointofinterest">Add a Point of Interest to Update Map</label>
+            <div >
+                <label for="pointofinterest" style="color: white">Add a Point of Interest to Update Map</label>
                 <input type="text" id="Add a Point of Interest" placeholder="Restroom, kiosk, etc.">
 
             </div>
 
             <div class="cred" id = "cred">
-                <label for="credpoints">Thank you for updating the map! You have earned 10 credibility points.</label>
+                <label for="credpoints" style="color: white">Thank you for updating the map! You have earned 10 credibility points.</label>
             </div>
 
             <script type="text/javascript" src="./blueprint.js"></script>

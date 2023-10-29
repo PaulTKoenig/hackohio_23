@@ -13,9 +13,15 @@ class Cell {
     }
 }
 
+let jsonData = {
+    matrix: Array(60)
+      .fill(0)
+      .map(() => Array(60).fill(0))
+};
+
 class Blueprint {
     constructor() {
-        const empty_array = Array(20).fill().map(() => Array(20).fill())
+        const empty_array = Array(60).fill().map(() => Array(60).fill())
         this.blueprint = empty_array.map(nested => nested.map(element => new Cell()));
     }
 
@@ -37,9 +43,9 @@ class Blueprint {
 
                 var cell = document.createElement("TD");
                 cell.setAttribute("id", `cell_${i}_${j}`);
-                cell.style.height = "30px";
-                cell.style.width = "30px";
-                cell.style.border = "1px solid";
+                cell.style.height = "10px";
+                cell.style.width = "10px";
+                // cell.style.border = "1px solid";
                 cell.style.borderColor = "black";
                 cell.setAttribute('onclick',
                     `if (event.metaKey) { 
@@ -114,9 +120,11 @@ class Blueprint {
         if (this.blueprint[i][j].enabled == true) {
             cell.style.background = "black";
             this.blueprint[i][j].enabled = false;
+            jsonData.matrix[i][j] = 0;
         } else {
             cell.style.background = "white";
             this.blueprint[i][j].enabled = true;
+            jsonData.matrix[i][j] = 1;
         }
     }
 
@@ -214,10 +222,20 @@ class Blueprint {
     }
 }
 
+function set_endgoal(i, j) {
+    var cell = document.getElementById(`cell_${i}_${j}`);
+    cell.style.background = "green";
+}
+
 
 async function search() {
 
     let search_results;
+
+    set_endgoal(7,32);
+    set_endgoal(7,33);
+    set_endgoal(6,32);
+    set_endgoal(6,33);
 
     let headers = new Headers();
     headers.append('Access-Control-Allow-Origin', '*');
@@ -244,6 +262,7 @@ function addVerticalRoute(i, j) {
     cell_div.style.left = (i * 30 + 13) + "px";
     cell_div.style.top = (j * 30) + "px";
     cell_div.style.borderRight = "4px solid red";
+    cell_div.style.zIndex = 1;
 }
 
 function addHorizontalRoute(i, j) {
@@ -253,6 +272,7 @@ function addHorizontalRoute(i, j) {
     cell_div.style.left = (j * 30) + "px";
     cell_div.style.top = (i * 30 + 13) + "px";
     cell_div.style.borderTop = "4px solid red";
+    cell_div.style.zIndex = 1;
 }
 
 function addRightRoute(i, j) {
@@ -281,6 +301,53 @@ function addLeftRoute(i, j) {
     cell_div.style.width = "17px";
     cell_div.style.top = (i * 30 ) + "px";
     cell_div.style.borderRight = "4px solid red";
+}
+
+function saveRoute() {
+    const jsonString = JSON.stringify(jsonData);
+    console.log('made it here')
+    console.log(jsonData);
+
+    // Save the JSON string in localStorage
+    localStorage.setItem("userData", jsonString);
+}
+
+function getRoute() {
+    let parsedData;
+
+    const storedData = localStorage.getItem('userData');
+    if (storedData) {
+        // Parse the JSON string back to an object
+        parsedData = JSON.parse(storedData);
+
+        /*
+
+        const blob = new Blob([storedData], { type: 'application/json' });
+
+        // Create a URL for the Blob
+        const url = URL.createObjectURL(blob);
+
+        // Create a link to download the data 
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'data.json'; // Specify the download filename
+        a.textContent = 'Download JSON';
+
+        // Trigger a click event on the link to start the download
+        a.click();
+        */
+
+        // console.log(parsedData);
+      } else {
+        console.log('No data found in localStorage.');
+      }
+    for (i = 0; i < parsedData.matrix[i].length; i++) {
+        for (j = 0; j < parsedData.matrix[i].length; j++) {
+            if (parsedData.matrix[i][j] == 1) {
+                blueprint.enableCell(i, j)
+            }
+        }
+    }
 }
 
 async function startRoute() {
@@ -330,41 +397,13 @@ async function startRoute() {
             
             arrow.style.transform = `rotate(${angle - 135}deg)`;
 
-            arrow_position.style.top = (-y_pos + 270) + "px";
-            arrow_position.style.left = (x_pos + 210) + "px";
+            let multiplier = 2;
 
-            /*
-            let angle = data['current_angle'];
-            angle = Math.floor(angle * 180 / Math.PI);
-
-
-            if (angle != last_angle) {
-                console.log(`rotate(${last_angle-angle}deg)`);
-                arrow.style.transform = `rotate(${last_angle-angle}deg)`;
-                console.log(arrow.style.transform)
-                last_angle = angle;
-            }
-            */
+            arrow_position.style.top = (-multiplier*y_pos + 270) + "px";
+            arrow_position.style.left = (multiplier*x_pos + 210) + "px";
 
         });
     }, 250);
-        
-
-        // await fetch('http://127.0.0.1:5000/get_values', {
-        //         method: 'GET',
-        //         headers: headers
-        //     })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         let angle = data['current_angle'];
-        //         angle = Math.floor(angle * 180 / Math.PI);
-        //         if (angle != last_angle) {
-        //             arrow.style.transform = `rotate(-${angle - last_angle}deg)`;
-        //             last_angle = angle;
-        //         }
-        
-        //         console.log(angle);
-        //     });
     
 }
 
