@@ -55,7 +55,6 @@
         }
         .cred {
             display: none;
-            
         }
     </style>
     <title>Blueprint Creator</title>
@@ -63,18 +62,18 @@
 
 <body>
 
-    <div class="row">
+    <div class="offset-md-3">
 
-        <div id="blueprint" class="col-md-6">
+        <div id="blueprint" class="col-md-12">
             <p class="arrow-position" id="arrow-position"><i class="arrow" id="arrow"></i></p>
         </div>
 
-        <div class="search col-md-6">
+        <div class="search col-md-12">
             <input type="text" id="search-bar" placeholder="Search..">
             <button type="button" class="btn btn-primary" onclick="search()">Search</button>
-            <button type="button" class="btn btn-primary" onclick="startRoute()">startRoute</button>
-            <button type="button" class="btn btn-primary" onclick="saveRoute()">saveRoute</button>
-            <button type="button" class="btn btn-primary" onclick="getRoute()">getRoute</button>
+            <button type="button" class="btn btn-primary" onclick="startRoute()">Start Route</button>
+            <!-- <button type="button" class="btn btn-primary" onclick="saveRoute()">saveRoute</button> -->
+            <button type="button" class="btn btn-primary" onclick="getRoute()">Get Map</button>
 
             <div id="blueprint"></div>
             <div class="square" id="square"></div>
@@ -85,10 +84,13 @@
                 <label for="disabilityRouteCheckbox" style="color: white">Disability Accommodating Route</label>
                 <input type="checkbox" id="disabilityRouteCheckbox" name="disabilityRoute" value="yes">
             </div>
+
             <div >
                 <label for="pointofinterest" style="color: white">Add a Point of Interest to Update Map</label>
                 <input type="text" id="Add a Point of Interest" placeholder="Restroom, kiosk, etc.">
+            
 
+            <button type="button" class="btn btn-primary" onclick="savePOI()">savePOI</button>
             </div>
 
             <div class="cred" id = "cred">

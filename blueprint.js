@@ -21,7 +21,7 @@ let jsonData = {
 
 class Blueprint {
     constructor() {
-        const empty_array = Array(60).fill().map(() => Array(60).fill())
+        const empty_array = Array(40).fill().map(() => Array(60).fill())
         this.blueprint = empty_array.map(nested => nested.map(element => new Cell()));
     }
 
@@ -230,6 +230,18 @@ function set_endgoal(i, j) {
 
 async function search() {
 
+    addVerticalRoute(7, 8);
+    addVerticalRoute(7, 7);
+    addRightRoute(6, 7);
+    addHorizontalRoute(6, 8);
+    addHorizontalRoute(6, 9);
+    addLeftRoute(6,10);
+    addVerticalRoute(10,3);
+    addVerticalRoute(10,4);
+    addVerticalRoute(10,5);
+    addLeftRoute(9,7);
+    addRightRoute(2, 10);
+
     let search_results;
 
     set_endgoal(7,32);
@@ -303,6 +315,11 @@ function addLeftRoute(i, j) {
     cell_div.style.borderRight = "4px solid red";
 }
 
+function savePOI() {
+    let cred = document.getElementById('cred');
+    cred.style.display = "block";
+}
+
 function saveRoute() {
     const jsonString = JSON.stringify(jsonData);
     console.log('made it here')
@@ -351,24 +368,24 @@ function getRoute() {
 }
 
 async function startRoute() {
-    addVerticalRoute(7, 8);
-    addVerticalRoute(7, 7);
-    addRightRoute(6, 7);
-    addHorizontalRoute(6, 8);
-    addHorizontalRoute(6, 9);
-    addLeftRoute(6,10);
-    addVerticalRoute(10,3);
-    addVerticalRoute(10,4);
-    addVerticalRoute(10,5);
-    addLeftRoute(9,7);
-    addRightRoute(2, 10);
+    // addVerticalRoute(7, 8);
+    // addVerticalRoute(7, 7);
+    // addRightRoute(6, 7);
+    // addHorizontalRoute(6, 8);
+    // addHorizontalRoute(6, 9);
+    // addLeftRoute(6,10);
+    // addVerticalRoute(10,3);
+    // addVerticalRoute(10,4);
+    // addVerticalRoute(10,5);
+    // addLeftRoute(9,7);
+    // addRightRoute(2, 10);
     //addVerticalRoute(7,9);
 
     let arrow_position = document.getElementById('arrow-position');
-    let cred = document.getElementById('cred');
+    // let cred = document.getElementById('cred');
     let arrow = document.getElementById('arrow');
     arrow.style.transform = "rotate(-45deg)";
-    cred.style.display = "block";
+    // cred.style.display = "block";
     arrow_position.style.left = "210px";
     arrow_position.style.top = "270px";
 
